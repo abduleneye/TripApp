@@ -20,6 +20,10 @@ val YourTripHeaderTextColor = Color(0xFF1D2433)
 val YourTripSubTextColor = Color(0xFF676E7E)
 val PlannedTripBoxBorderColor = Color(0xFFE4E7EC)
 val PlannedTripsDropDownParentBoxColor = Color(0xFFF0F2F5)
+val TravelLocationFloatBoxColor = Color(0xFFFFFF33)
+val SelectCityTextColor = Color(0xFF647995)
+val TreeBoundingBoxColor = Color(0xFFE7F0FF)
+val PlanTripImageBoxBgColor = Color(0xFFEDF7F9)
 
 
 
