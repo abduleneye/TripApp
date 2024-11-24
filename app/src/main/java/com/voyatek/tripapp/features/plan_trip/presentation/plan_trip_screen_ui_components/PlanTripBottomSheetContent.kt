@@ -1,5 +1,6 @@
 package com.voyatek.tripapp.features.plan_trip.presentation.plan_trip_screen_ui_components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -29,12 +30,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.voyatek.tripapp.R
+import com.voyatek.tripapp.ui.theme.CreateTripButtonColor
 import com.voyatek.tripapp.ui.theme.DialogLikeContentBoxBgColor
 import com.voyatek.tripapp.ui.theme.DialogLikeContentBoxBorderColor
 import com.voyatek.tripapp.ui.theme.TextDialogContentColor
@@ -50,15 +53,30 @@ fun PlanTripBottomSheetContent(
 
                 modifier = Modifier
                     .padding(all = 16.dp)
+                    .background(color = CreateTripButtonColor)
             .fillMaxSize(),
     ){
 
             //Bottom sheet header
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+
+        ){
+            Image(
+                painter = painterResource(id = R.drawable.line_svg),
+                contentDescription = "",
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    //.padding(top = 64.dp)
+            )
             Column(
                 modifier = Modifier
-                   // .padding(top = 64.dp)
+                // .padding(top = 64.dp)
 
             ){
+
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(),
@@ -67,9 +85,9 @@ fun PlanTripBottomSheetContent(
                 ){
                     Box(
                         modifier =
-                            Modifier.size(44.dp)
-                                .clip(RoundedCornerShape(4.dp))
-                                .background(color = TreeBoundingBoxColor)
+                        Modifier.size(44.dp)
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(color = TreeBoundingBoxColor)
                         ,
                         contentAlignment = Alignment.Center
                     ){
@@ -88,11 +106,14 @@ fun PlanTripBottomSheetContent(
                         imageVector = Icons.Default.Close,
                         contentDescription = "",
 
-                    )
+                        )
 
                 }
 
             }
+
+        }
+
             //Create a trip header
             Column(
                 modifier = Modifier
@@ -116,7 +137,7 @@ fun PlanTripBottomSheetContent(
                     letterSpacing = (-0.5).sp
                 )
                 Text(
-                    text = "Let's Go! Build You Next Adventure",
+                    text = "Let's Go! Build Your Next Adventure",
                     modifier = Modifier
                         .height(20.dp)
                        // .width(358.dp)

@@ -129,7 +129,8 @@ fun PlanTripScreen(
                 onDismissRequest = {
                     showBottomSheet = false
                 },
-                sheetState = sheetState
+                sheetState = sheetState,
+                containerColor = CreateTripButtonColor
             ) {
 
                 // Main content of the ModalBottomSheet
