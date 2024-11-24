@@ -123,9 +123,6 @@ fun PlanTripScreen(
 
         if(showBottomSheet){
             ModalBottomSheet(
-               // shape = BottomSheetDefaults,
-//                modifier = Modifier
-//                    .fillMaxHeight(),
                 onDismissRequest = {
                     showBottomSheet = false
                 },
