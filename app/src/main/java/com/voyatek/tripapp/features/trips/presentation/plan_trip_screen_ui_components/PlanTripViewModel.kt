@@ -7,6 +7,7 @@ import com.voyatek.tripapp.features.trips.core.utils.Resource
 import com.voyatek.tripapp.features.trips.domain.model.CreateTripBodyModel
 import com.voyatek.tripapp.features.trips.domain.repo.TripApiRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -20,7 +21,7 @@ class PlanTripViewModel @Inject constructor(
     private val tripApiRepo: TripApiRepo
 ): ViewModel() {
     init {
-        getTrips()
+        //getTrips()
     }
 
     private var _tripScreenUiState = MutableStateFlow(PlanTripUiState())
@@ -91,13 +92,21 @@ class PlanTripViewModel @Inject constructor(
                             "CREATE_TRIP",
                             "${result.message}"
                         )
+                        _tripScreenUiState.update {
+                            it.copy(
+                                //createTripLoadingDialogBoxVisibility = false
+                                tripCreationFailed = true,
+                                tripCreationInProgress = false
+                            )
+                        }
 
                     }
                     is Resource.Loading -> {
 
                         _tripScreenUiState.update {
                             it.copy(
-                                createTripLoadingDialogBoxVisibility = true
+                                createTripLoadingDialogBoxVisibility = true,
+                                tripCreationInProgress = true
                             )
                         }
 
@@ -109,7 +118,9 @@ class PlanTripViewModel @Inject constructor(
                         )
                         _tripScreenUiState.update {
                             it.copy(
-                                createTripLoadingDialogBoxVisibility = false
+                                createTripLoadingDialogBoxVisibility = true,
+                                tripCreatedSuccessfully = true,
+                                tripCreationInProgress = false
                             )
                         }
 
@@ -117,6 +128,26 @@ class PlanTripViewModel @Inject constructor(
                 }
             }.launchIn(this)
 
+        }
+    }
+
+    fun resetUiState(){
+        _tripScreenUiState.update {
+            it.copy(
+                tripLocationCity ="",
+                tripStartDate   = "",
+                tripEndDate  = "",
+                tripName  = "",
+                tripTravelStyle = "",
+                tripDescription = "",
+                createTripDialogBoxVisibility = false,
+                createTripLoadingDialogBoxVisibility = false,
+                tripCreatedSuccessfully  = false,
+                tripCreationFailed = false,
+                tripCreationInProgress = false,
+                bottomSheetVisibility = false
+
+            )
         }
     }
 
@@ -193,6 +224,56 @@ class PlanTripViewModel @Inject constructor(
 
             UiEventClass.postCreateTrip -> {
                 createTrips()
+            }
+
+            UiEventClass.hideCreateTripLoadingDialogBoxVisibility -> {
+                _tripScreenUiState.update {
+                    it.copy(
+                        createTripLoadingDialogBoxVisibility = false,
+                        createTripDialogBoxVisibility = false
+
+                    )
+                }
+
+            }
+            UiEventClass.showCreateTripLoadingDialogBox -> {
+
+            }
+
+            UiEventClass.onSuccesCloseLoadingDialogBox -> {
+                resetUiState()
+
+
+
+            }
+
+            UiEventClass.hideBottomSheet -> {
+                _tripScreenUiState.update {
+                    it.copy(
+                        bottomSheetVisibility = false
+                    )
+                }
+
+            }
+            UiEventClass.showBottomSheet -> {
+                _tripScreenUiState.update {
+                    it.copy(
+                        bottomSheetVisibility = true
+                    )
+                }
+
+            }
+
+            UiEventClass.onErrorCloseLoadingDialogBox -> {
+
+                _tripScreenUiState.update {
+                    it.copy(
+                        createTripLoadingDialogBoxVisibility = false,
+                        createTripDialogBoxVisibility = false
+
+                    )
+                }
+
             }
         }
     }

@@ -2,10 +2,14 @@ package com.voyatek.tripapp.features.trips.presentation.plan_trip_screen_ui_comp
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -38,7 +42,7 @@ fun CreateTripLoadingDialogBox(
 
             modifier = Modifier
                 .fillMaxWidth(0.7f)
-                .fillMaxHeight(0.5f)
+                .height(200.dp)
                 .clip(shape = RoundedCornerShape(4.dp))
             ,
             shape = CardDefaults.shape
@@ -54,10 +58,89 @@ fun CreateTripLoadingDialogBox(
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
 
-                CircularProgressIndicator()
-                Text(
-                    text = loadingText
-                )
+                if (planTripUiState.tripCreationInProgress){
+                    CircularProgressIndicator()
+                    Text(
+                        text = loadingText
+                    )
+                }else if(planTripUiState.tripCreatedSuccessfully){
+
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ){
+                        Text(
+                            text = "SUCCESS"
+                        )
+
+                        Spacer(
+                            modifier = Modifier
+                                .height(64.dp)
+                        )
+
+                        Button(onClick = {
+
+                            uiEvent(UiEventClass.onSuccesCloseLoadingDialogBox)
+
+                        }) {
+                            Text(
+                                text = "CLOSE"
+                            )
+                        }
+
+                    }
+
+
+                }else if(planTripUiState.tripCreationFailed){
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ){
+                        Text(
+                            text = "AN ERROR OCCURRED"
+                        )
+
+                        Spacer(
+                            modifier = Modifier
+                                .height(64.dp)
+                        )
+
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceAround
+                        ){
+
+                            Button(onClick = {
+                                uiEvent(UiEventClass.postCreateTrip)
+
+                            }) {
+                                Text(
+                                    text = "RETRY"
+                                )
+
+                            }
+                            Button(onClick = {
+
+                                uiEvent(UiEventClass.onErrorCloseLoadingDialogBox)
+
+
+                            }) {
+                                Text(
+                                    text = "CANCEL"
+                                )
+
+                            }
+
+
+                        }
+
+
+                    }
 
 
             }
@@ -66,4 +149,5 @@ fun CreateTripLoadingDialogBox(
         }
 
     }
+}
 }

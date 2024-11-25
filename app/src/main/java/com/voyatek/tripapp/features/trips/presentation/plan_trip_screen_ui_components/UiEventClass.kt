@@ -18,7 +18,20 @@ sealed class UiEventClass {
 
     object hideCreateTripDialogBoxVisibility: UiEventClass()
 
+    object showCreateTripLoadingDialogBox: UiEventClass()
+
+    object hideCreateTripLoadingDialogBoxVisibility: UiEventClass()
+
+    object showBottomSheet: UiEventClass()
+
+    object hideBottomSheet: UiEventClass()
+
     object postCreateTrip: UiEventClass()
+
+    object onSuccesCloseLoadingDialogBox: UiEventClass()
+
+    object onErrorCloseLoadingDialogBox: UiEventClass()
+
 
 
 

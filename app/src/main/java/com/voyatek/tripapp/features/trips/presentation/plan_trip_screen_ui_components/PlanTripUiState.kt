@@ -10,6 +10,12 @@ data class PlanTripUiState(
     val tripTravelStyle: String = "",
     val tripDescription: String = "",
     val createTripDialogBoxVisibility: Boolean = false,
-    val createTripLoadingDialogBoxVisibility: Boolean = false
-)
+    val createTripLoadingDialogBoxVisibility: Boolean = false,
+    val tripCreatedSuccessfully: Boolean = false,
+    val tripCreationFailed: Boolean = false,
+    val tripCreationInProgress: Boolean = false,
+    val bottomSheetVisibility: Boolean = false
+
+
+    )
 

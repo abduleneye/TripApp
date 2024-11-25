@@ -57,7 +57,7 @@ fun CreateTripConfirmationDialogBox(
 
             modifier = Modifier
                 .fillMaxWidth(0.7f)
-                .fillMaxHeight(0.5f)
+                .height(200.dp)
                 .clip(shape = RoundedCornerShape(4.dp))
             ,
             shape = CardDefaults.shape
@@ -74,6 +74,11 @@ fun CreateTripConfirmationDialogBox(
             ){
                 Text(
                     text = "Create Trip?"
+                )
+
+                Spacer(
+                    modifier = Modifier
+                        .height(64.dp)
                 )
 
                 Row(
