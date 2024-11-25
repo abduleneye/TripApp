@@ -1,6 +1,7 @@
 package com.voyatek.tripapp.features.trips.presentation.date_screen_ui_components
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,13 +26,17 @@ import com.voyatek.tripapp.ui.theme.YourTripHeaderTextColor
 fun DateHolderBoxItem(
     dateDurationHeader: String,
     dateHolderText: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    openDateDialog: () -> Unit
 ){
 
     Column(
         modifier = modifier
             // .width(175.dp)
             .height(50.dp)
+            .clickable {
+                openDateDialog.invoke()
+            }
         // .background(color = Color.Black)
 
 

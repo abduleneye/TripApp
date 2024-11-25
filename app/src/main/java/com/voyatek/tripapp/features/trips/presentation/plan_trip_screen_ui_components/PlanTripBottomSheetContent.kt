@@ -37,7 +37,9 @@ import com.voyatek.tripapp.ui.theme.YourTripHeaderTextColor
 
 @Composable
 fun PlanTripBottomSheetContent(
-    closeBottomSheet:  () -> Unit
+    closeBottomSheet:  () -> Unit,
+    uiState: PlanTripUiState,
+    uiEvent: (UiEventClass) -> Unit
 ){
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -178,9 +180,10 @@ fun PlanTripBottomSheetContent(
                         modifier = Modifier
                             .fillMaxWidth(),
                         onValueChange = {
+                            uiEvent(UiEventClass.setTripName(it))
 
                         },
-                        value = "",
+                        value = uiState.tripName,
                         label = {
                             Text(
                                 text = "Enter the Trip name"
@@ -195,7 +198,10 @@ fun PlanTripBottomSheetContent(
                 )
 
                 //Travel style and selection box
-                DropDownMenuTwo()
+                TripTravelStyleDropDownMenuBox(
+                    uiState = uiState,
+                    uiEvent = uiEvent
+                )
 
                 Spacer(modifier = Modifier
                     .height(16.dp)
@@ -226,9 +232,11 @@ fun PlanTripBottomSheetContent(
                             .height(188.dp)
                         ,
                         onValueChange = {
+                            uiEvent(UiEventClass.setTripDescription(it))
+
 
                         },
-                        value = "",
+                        value = uiState.tripDescription,
                         label = {
                             Text(
                                 text = "Tell us more about the trip"
@@ -251,7 +259,7 @@ fun PlanTripBottomSheetContent(
 @Preview(showSystemUi = true)
 @Composable
 fun PlanTripBottomSheetContentPreview(){
-    PlanTripBottomSheetContent(
-        closeBottomSheet = {}
-    )
+//    PlanTripBottomSheetContent(
+//        closeBottomSheet = {}
+//    )
 }

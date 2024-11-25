@@ -14,6 +14,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.blue_tooth_app.bluetooth_app.features.core.navigation.NavigationGraph
+import com.voyatek.tripapp.features.trips.presentation.date_screen_ui_components.DateScreen
 import com.voyatek.tripapp.features.trips.presentation.plan_trip_screen_ui_components.PlanTripScreen
 import com.voyatek.tripapp.features.trips.presentation.plan_trip_screen_ui_components.PlanTripViewModel
 import com.voyatek.tripapp.ui.theme.VoyaTekTripAppTheme
@@ -25,15 +27,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val todoViewModel = hiltViewModel<PlanTripViewModel>()
 
             VoyaTekTripAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Log.d(
-                        "MAFVM",
-                        "${todoViewModel.tripScreenUiState.collectAsState()}"
-                    )
-                        PlanTripScreen(modifier = Modifier.padding(innerPadding))
+
+                        NavigationGraph(modifier = Modifier.padding(innerPadding))
 
                                     }
             }

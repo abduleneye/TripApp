@@ -39,7 +39,10 @@ import com.voyatek.tripapp.ui.theme.YourTripHeaderTextColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DropDownMenuTwo(){
+fun TripTravelStyleDropDownMenuBox(
+    uiState: PlanTripUiState,
+    uiEvent: (UiEventClass) -> Unit
+){
     var expanded by remember{
 
         mutableStateOf(false)
@@ -84,9 +87,13 @@ fun DropDownMenuTwo(){
 
         OutlinedTextField(
             enabled = false,
-            value = selectedItem,
+            //value = selectedItem,
+            value = uiState.tripTravelStyle,
+
             onValueChange = {
-                selectedItem = it
+               // selectedItem = it
+                //uiEvent(UiEventClass.setTripTravelStyle(it))
+
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -129,7 +136,8 @@ fun DropDownMenuTwo(){
 
                 DropdownMenuItem(
                     onClick = {
-                        selectedItem = label
+                       // selectedItem = label
+                        uiEvent(UiEventClass.setTripTravelStyle(label))
                         expanded = false
                     },
                     text = {
@@ -178,7 +186,7 @@ fun DropDownPreview(){
         horizontalAlignment = Alignment.CenterHorizontally
 
     ){
-        DropDownMenuTwo()
+       // TripTravelStyleDropDownMenuBox()
 
     }
 }

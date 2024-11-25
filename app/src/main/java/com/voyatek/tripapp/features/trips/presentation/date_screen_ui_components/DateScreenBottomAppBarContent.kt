@@ -24,7 +24,13 @@ import com.voyatek.tripapp.ui.theme.CreateTripButtonBackgroundColor
 import com.voyatek.tripapp.ui.theme.CreateTripButtonColor
 
 @Composable
-fun DateScreenBottomAppBarContent(){
+fun DateScreenBottomAppBarContent(
+    openStartDateDialog: () -> Unit,
+    openEndDateDialog: () -> Unit,
+    formattedStartDate: String,
+    formattedEndDate: String
+
+){
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -50,8 +56,9 @@ fun DateScreenBottomAppBarContent(){
         ) {
             DateHolderBoxItem(
                 dateDurationHeader = "Start Date",
-                dateHolderText = "Sat, Feb 2",
-                modifier = Modifier.weight(0.5f)
+                dateHolderText = formattedStartDate,
+                modifier = Modifier.weight(0.5f),
+                openDateDialog = openStartDateDialog
             )
 
             Spacer(
@@ -60,8 +67,9 @@ fun DateScreenBottomAppBarContent(){
 
             DateHolderBoxItem(
                 dateDurationHeader = "End Date",
-                dateHolderText = "Wed, Feb 5",
-                modifier = Modifier.weight(0.5f)
+                dateHolderText = formattedEndDate,
+                modifier = Modifier.weight(0.5f),
+                openDateDialog = openEndDateDialog
             )
 
         }

@@ -25,17 +25,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.voyatek.tripapp.R
+import com.voyatek.tripapp.features.trips.presentation.plan_trip_screen_ui_components.UiEventClass
 import com.voyatek.tripapp.ui.theme.SelectCityTextColor
 import com.voyatek.tripapp.ui.theme.YourTripHeaderTextColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WhereScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavController,
+    UiEvent: (UiEventClass) -> Unit
 ){
     Scaffold (
         topBar = {
+
             TopAppBar(
                 title ={
                     Text(
@@ -48,11 +53,11 @@ fun WhereScreen(
                 navigationIcon = {
                     IconButton(onClick = {
                         //navController.navigate(Screen.Home.route)
-                        //navController.popBackStack()
+                        navController.popBackStack()
                     }) {
                         Icon(
                             imageVector = Icons.Default.Close,
-                            contentDescription = "Back Arrow",
+                            contentDescription = "Close",
                             Modifier.size(
                                 width = 20.dp,
                                 height = 20.dp
@@ -144,37 +149,76 @@ fun WhereScreen(
                         countryAndCity = "Lagos, Nigeria",
                         airportName = "Muritala Muhammad",
                         countryInitial = "NG",
-                        countryFlag = R.drawable.nig_flag
+                        countryFlag = R.drawable.nig_flag,
+                        selectCityEvent = {
+                            UiEvent(UiEventClass.setTripLocation(tripLocation = "Lagos, Nigeria"))
+                            navController.popBackStack()
+
+                        }
                     )
                     CityRowModel(
                         countryAndCity = "Laghout, Algeria",
                         airportName = "Laghout",
                         countryInitial = "DZ",
-                        countryFlag = R.drawable.algeria_flag
+                        countryFlag = R.drawable.algeria_flag,
+                        selectCityEvent = {
+                            UiEvent(UiEventClass.setTripLocation(tripLocation = "Laghout, Algeria"))
+                            navController.popBackStack()
+
+
+                        }
                     )
                     CityRowModel(
                         countryAndCity = "Doha, Qatar",
                         airportName = "Doha",
                         countryInitial = "QA",
-                        countryFlag = R.drawable.qatar_flag_img
+                        countryFlag = R.drawable.qatar_flag_img,
+                        selectCityEvent = {
+                            UiEvent(UiEventClass.setTripLocation(tripLocation = "Doha, Qatar"))
+                            navController.popBackStack()
+
+
+                        }
+
                     )
                     CityRowModel(
                         countryAndCity = "Doha, Qatar",
                         airportName = "Doha",
                         countryInitial = "QA",
-                        countryFlag = R.drawable.qatar_flag_img
+                        countryFlag = R.drawable.qatar_flag_img,
+                        selectCityEvent = {
+                            UiEvent(UiEventClass.setTripLocation(tripLocation = "Doha, Qatar"))
+                            navController.popBackStack()
+
+
+                        }
+
                     )
                     CityRowModel(
                         countryAndCity = "Doha, Qatar",
                         airportName = "Doha",
                         countryInitial = "QA",
-                        countryFlag = R.drawable.qatar_flag_img
+                        countryFlag = R.drawable.qatar_flag_img,
+                        selectCityEvent = {
+                            UiEvent(UiEventClass.setTripLocation(tripLocation = "Doha, Qatar"))
+                            navController.popBackStack()
+
+
+                        }
+
                     )
                     CityRowModel(
                         countryAndCity = "Doha, Qatar",
                         airportName = "Doha",
                         countryInitial = "QA",
-                        countryFlag = R.drawable.qatar_flag_img
+                        countryFlag = R.drawable.qatar_flag_img,
+                        selectCityEvent = {
+                            UiEvent(UiEventClass.setTripLocation(tripLocation = "Doha, Qatar"))
+                            navController.popBackStack()
+
+
+                        }
+
                     )
 
 
@@ -199,5 +243,5 @@ fun WhereScreen(
     )
 @Composable
 fun WhereScreenPreview(){
-    WhereScreen()
+   // WhereScreen()
 }

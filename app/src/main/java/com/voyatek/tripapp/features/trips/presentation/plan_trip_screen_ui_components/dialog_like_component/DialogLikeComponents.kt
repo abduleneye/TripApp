@@ -2,6 +2,7 @@ package com.voyatek.tripapp.features.trips.presentation.plan_trip_screen_ui_comp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,11 +37,12 @@ fun DialogLikeComponents(
     icon: Int,
     headerText: String,
     subText: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigationAction: () -> Unit
     ){
     Box(
         modifier = modifier
-           // .fillMaxWidth()
+           .fillMaxWidth()
             .height(86.dp)
             .width(302.dp)
             .padding(
@@ -52,7 +54,11 @@ fun DialogLikeComponents(
             )
             .clip(RoundedCornerShape(4.dp))
             .border(width = 1.dp, color = DialogLikeContentBoxBorderColor)
-            .background(DialogLikeContentBoxBgColor),
+            .background(DialogLikeContentBoxBgColor)
+            .clickable {
+                navigationAction.invoke()
+            }
+        ,
         contentAlignment = Alignment.CenterStart
 
     ){
@@ -129,12 +135,12 @@ fun PlanTripScreenPreview(){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        DialogLikeComponents(
-            icon = R.drawable.blank_calendar,
-            headerText = "Start Date",
-            subText = "Enter Date",
-            modifier = Modifier
-        )
+//        DialogLikeComponents(
+//            icon = R.drawable.blank_calendar,
+//            headerText = "Start Date",
+//            subText = "Enter Date",
+//            modifier = Modifier
+//        )
 
     }
 

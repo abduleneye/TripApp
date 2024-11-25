@@ -1,5 +1,6 @@
 package com.voyatek.tripapp.features.trips.presentation.where_screen_ui_components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,7 +33,8 @@ fun CityRowModel(
     countryAndCity: String,
     airportName: String,
     countryInitial: String,
-    countryFlag: Int
+    countryFlag: Int,
+    selectCityEvent: ()->Unit
 ){
     //Parent Row
     Row(
@@ -45,6 +47,9 @@ fun CityRowModel(
                 bottom = 20.dp
 
             )
+            .clickable {
+                selectCityEvent.invoke()
+            }
         ,
 
         horizontalArrangement = Arrangement.SpaceBetween
@@ -161,12 +166,12 @@ fun CityRowModelPreview(){
         ,
         verticalArrangement = Arrangement.Center
     ){
-        CityRowModel(
-            countryAndCity = "Lagos, Nigeria",
-            airportName = "Muritala Muhammad",
-            countryInitial = "NG",
-            countryFlag = R.drawable.nig_flag
-        )
+//        CityRowModel(
+//            countryAndCity = "Lagos, Nigeria",
+//            airportName = "Muritala Muhammad",
+//            countryInitial = "NG",
+//            countryFlag = R.drawable.nig_flag
+//        )
 
     }
 }

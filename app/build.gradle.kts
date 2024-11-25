@@ -31,6 +31,7 @@ android {
         }
     }
     compileOptions {
+        //coreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -43,6 +44,12 @@ android {
 }
 
 dependencies {
+
+
+    //date picker dialog dependency
+    implementation (libs.datetime)
+    //backward compatibility
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
 
     implementation (libs.androidx.navigation.compose)
     implementation (libs.androidx.lifecycle.viewmodel.compose)

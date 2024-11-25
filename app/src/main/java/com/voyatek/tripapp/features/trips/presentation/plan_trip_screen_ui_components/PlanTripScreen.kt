@@ -1,5 +1,7 @@
 package com.voyatek.tripapp.features.trips.presentation.plan_trip_screen_ui_components
 
+import CreateTripConfirmationDialogBox
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -39,11 +41,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.blue_tooth_app.bluetooth_app.features.core.navigation.ScreenRoutes
 import com.voyatek.tripapp.R
 import com.voyatek.tripapp.features.trips.presentation.plan_trip_screen_ui_components.dialog_like_component.DialogLikeComponents
 import com.voyatek.tripapp.ui.theme.CreateTripButtonBackgroundColor
@@ -60,18 +65,12 @@ import com.voyatek.tripapp.ui.theme.YourTripSubTextColor
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlanTripScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavController,
+    uiState: PlanTripUiState,
+    uiEvent: (UiEventClass) -> Unit
 ){
-
-
-
-    val sheetWidth = remember {
-        mutableStateOf(60.dp)
-    }
-    val sheetHeight = remember {
-        mutableStateOf(500.dp)
-    }
-
+    val context = LocalContext.current
 
     ///
     val sheetState = rememberModalBottomSheetState()
@@ -142,8 +141,9 @@ fun PlanTripScreen(
                             PlanTripBottomSheetContent(
                                 closeBottomSheet = {
                                     showBottomSheet = false
-                                }
-
+                                },
+                                uiState = uiState,
+                                uiEvent = uiEvent
                             )
                         }
                     }
@@ -167,7 +167,23 @@ fun PlanTripScreen(
                                 .border(width = 1.dp, color = DialogLikeContentBoxBorderColor)
                                 .background(CreateTripButtonBackgroundColor)
                                 .clickable {
-                                    showBottomSheet = true
+                                        if (
+                                            uiState.tripName.isEmpty()
+                                            || uiState.tripTravelStyle.isEmpty()
+                                            || uiState.tripDescription.isEmpty()
+                                        ){
+                                            Toast.makeText(
+                                                context,
+                                                "Please enter all fields above",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+
+
+                                        }else{
+                                            uiEvent(UiEventClass.showCreateTripDialogBox)
+
+                                        }
+
                                 }
                             ,
                             contentAlignment = Alignment.Center
@@ -194,13 +210,31 @@ fun PlanTripScreen(
                 }
             }
         }
+
         LazyColumn(
             modifier = Modifier
                 .padding(padding)
                 .fillMaxSize(),
 
         ) {
+
+
             item {
+
+                if(uiState.createTripDialogBoxVisibility){
+                    CreateTripConfirmationDialogBox(
+                        planTripUiState = uiState,
+                        uiEvent = uiEvent
+                    )
+                }
+
+                if(uiState.createTripLoadingDialogBoxVisibility){
+                    CreateTripLoadingDialogBox(
+                        planTripUiState = uiState,
+                        uiEvent = uiEvent,
+                        loadingText = "Creating trip",
+                    )
+                }
                 //Initial Contents with omo image bg
                 Box(
                     modifier = Modifier
@@ -289,7 +323,10 @@ fun PlanTripScreen(
                                 DialogLikeComponents(
                                     icon = R.drawable.location,
                                     headerText = "Where to?",
-                                    subText = "Select City",
+                                    subText = if(uiState.tripLocationCity.isEmpty()) "Select City" else uiState.tripLocationCity,
+                                    navigationAction = {
+                                        navController.navigate(route = ScreenRoutes.WhereScreen.routes)
+                                    }
                                     // modifier = Modifier.weight(1f)
 
                                 )
@@ -308,14 +345,20 @@ fun PlanTripScreen(
                                     DialogLikeComponents(
                                         icon = R.drawable.blank_calendar,
                                         headerText = "Start Date",
-                                        subText = "Enter Date",
-                                        modifier = Modifier.weight(1f)
+                                        subText = if(uiState.tripStartDate.isEmpty()) "Enter Date" else uiState.tripStartDate,
+                                        modifier = Modifier.weight(1f),
+                                        navigationAction = {
+                                            navController.navigate(route = ScreenRoutes.DateScreen.routes)
+                                        }
                                     )
                                     DialogLikeComponents(
                                         icon = R.drawable.blank_calendar,
                                         headerText = "End Date",
-                                        subText = "Enter Date",
-                                        modifier = Modifier.weight(1f)
+                                        subText = if(uiState.tripEndDate.isEmpty()) "Enter Date" else uiState.tripEndDate,
+                                        modifier = Modifier.weight(1f),
+                                        navigationAction = {
+                                            navController.navigate(route = ScreenRoutes.DateScreen.routes)
+                                        }
 
                                     )
 
@@ -343,8 +386,23 @@ fun PlanTripScreen(
                                         .border(width = 1.dp, color = DialogLikeContentBoxBorderColor)
                                         .background(CreateTripButtonBackgroundColor)
                                         .clickable {
-                                            showBottomSheet = true
-                                        }
+                                            if (
+                                                uiState.tripLocationCity.isEmpty()
+                                                || uiState.tripStartDate.isEmpty()
+                                                || uiState.tripEndDate.isEmpty()
+                                            ){
+                                                Toast.makeText(
+                                                    context,
+                                                    "Please enter all fields above",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+
+
+                                            }else{
+                                                showBottomSheet = true
+
+                                            }
+                                                   }
                                     ,
                                     contentAlignment = Alignment.Center
                                 ){
@@ -548,5 +606,5 @@ fun PlanTripScreen(
 )
 @Composable
 fun PlanTripScreenPreview(){
-    PlanTripScreen()
+    //PlanTripScreen()
 }

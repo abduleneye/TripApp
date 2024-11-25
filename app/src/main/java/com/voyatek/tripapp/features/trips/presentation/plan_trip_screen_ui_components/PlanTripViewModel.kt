@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.voyatek.tripapp.features.trips.core.utils.Resource
+import com.voyatek.tripapp.features.trips.domain.model.CreateTripBodyModel
 import com.voyatek.tripapp.features.trips.domain.repo.TripApiRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -52,7 +53,7 @@ class PlanTripViewModel @Inject constructor(
                             it.copy(
                                 tripName = result.data!!.tripName,
                                 tripDescription = result.data.tripDescription,
-                                travelStyle = result.data.travelStyle
+                                tripTravelStyle = result.data.travelStyle
                             )
 
 
@@ -68,6 +69,131 @@ class PlanTripViewModel @Inject constructor(
 
 
             }.launchIn(this)
+        }
+    }
+
+    private fun createTrips(){
+        viewModelScope.launch {
+
+            tripApiRepo.createTrip(
+                CreateTripBodyModel(
+                    tripLocationCity = _tripScreenUiState.value.tripLocationCity,
+                    tripStartDate = _tripScreenUiState.value.tripStartDate,
+                    tripEndDate = _tripScreenUiState.value.tripEndDate,
+                    tripName = _tripScreenUiState.value.tripName,
+                    tripTravelStyle = _tripScreenUiState.value.tripTravelStyle,
+                    tripDescription = _tripScreenUiState.value.tripDescription
+                )
+            ).onEach { result ->
+                when(result){
+                    is Resource.Error -> {
+                        Log.d(
+                            "CREATE_TRIP",
+                            "${result.message}"
+                        )
+
+                    }
+                    is Resource.Loading -> {
+
+                        _tripScreenUiState.update {
+                            it.copy(
+                                createTripLoadingDialogBoxVisibility = true
+                            )
+                        }
+
+                    }
+                    is Resource.Success -> {
+                        Log.d(
+                            "CREATE_TRIP",
+                            "${result.data}"
+                        )
+                        _tripScreenUiState.update {
+                            it.copy(
+                                createTripLoadingDialogBoxVisibility = false
+                            )
+                        }
+
+                    }
+                }
+            }.launchIn(this)
+
+        }
+    }
+
+
+
+    fun onEvent(event: UiEventClass){
+        when(event){
+            is UiEventClass.setTripEndDate -> {
+                _tripScreenUiState.update {
+                    it.copy(
+                        tripEndDate = event.tripEndDate
+                    )
+                }
+
+            }
+            is UiEventClass.setTripLocation -> {
+                _tripScreenUiState.update {
+                    it.copy(
+                        tripLocationCity = event.tripLocation
+                    )
+                }
+
+            }
+            is UiEventClass.setTripStartDate -> {
+                _tripScreenUiState.update {
+                    it.copy(
+                        tripStartDate = event.tripStartDate
+                    )
+                }
+
+            }
+
+            is UiEventClass.setTripDescription -> {
+                _tripScreenUiState.update {
+                    it.copy(
+                        tripDescription = event.tripDescription
+                    )
+                }
+
+            }
+            is UiEventClass.setTripName -> {
+                _tripScreenUiState.update {
+                    it.copy(
+                        tripName = event.tripName
+                    )
+                }
+
+            }
+            is UiEventClass.setTripTravelStyle -> {
+                _tripScreenUiState.update {
+                    it.copy(
+                        tripTravelStyle = event.tripTravelStyle
+                    )
+                }
+
+            }
+
+            UiEventClass.hideCreateTripDialogBoxVisibility -> {
+                _tripScreenUiState.update {
+                    it.copy(
+                        createTripDialogBoxVisibility = false
+                    )
+                }
+
+            }
+            UiEventClass.showCreateTripDialogBox -> {
+                _tripScreenUiState.update {
+                    it.copy(
+                        createTripDialogBoxVisibility = true
+                    )
+                }
+
+            }
+
+            UiEventClass.postCreateTrip -> {
+                createTrips()
+            }
         }
     }
 
