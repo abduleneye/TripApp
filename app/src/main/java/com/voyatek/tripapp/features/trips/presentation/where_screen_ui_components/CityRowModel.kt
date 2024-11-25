@@ -1,4 +1,4 @@
-package com.voyatek.tripapp.features.plan_trip.presentation.where_screen_ui_components
+package com.voyatek.tripapp.features.trips.presentation.where_screen_ui_components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -26,7 +25,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.voyatek.tripapp.R
 import com.voyatek.tripapp.ui.theme.TextColorDarkBlue
-import com.voyatek.tripapp.ui.theme.TextDialogContentColor
 import com.voyatek.tripapp.ui.theme.YourTripSubTextColor
 
 @Composable

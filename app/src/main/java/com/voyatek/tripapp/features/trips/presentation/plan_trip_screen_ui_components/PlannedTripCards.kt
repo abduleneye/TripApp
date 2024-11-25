@@ -1,4 +1,4 @@
-package com.voyatek.tripapp.features.plan_trip.presentation.plan_trip_screen_ui_components
+package com.voyatek.tripapp.features.trips.presentation.plan_trip_screen_ui_components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -21,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.BrushPainter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -33,8 +32,6 @@ import com.voyatek.tripapp.R
 import com.voyatek.tripapp.ui.theme.CreateTripButtonBackgroundColor
 import com.voyatek.tripapp.ui.theme.CreateTripButtonColor
 import com.voyatek.tripapp.ui.theme.PlannedTripBoxBorderColor
-import com.voyatek.tripapp.ui.theme.SelectCityTextColor
-import com.voyatek.tripapp.ui.theme.TravelLocationFloatBoxColor
 import com.voyatek.tripapp.ui.theme.YourTripHeaderTextColor
 
 @Composable

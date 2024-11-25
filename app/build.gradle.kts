@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id ("kotlin-kapt")
+    id ("com.google.dagger.hilt.android")
+
 }
 
 android {
@@ -40,6 +43,25 @@ android {
 }
 
 dependencies {
+
+    implementation (libs.androidx.navigation.compose)
+    implementation (libs.androidx.lifecycle.viewmodel.compose)
+    //implementation(libs.hilt.compose)
+
+
+
+
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation (libs.okhttp)
+    implementation(libs.converter.gson)
+    implementation (libs.logging.interceptor)
+
+
+    //Dagger - Hilt
+    implementation(libs.hilt.compose)
+    implementation(libs.hilt.core)
+    kapt(libs.hilt.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -24,6 +24,21 @@ val TravelLocationFloatBoxColor = Color(0xFFFFFF33)
 val SelectCityTextColor = Color(0xFF647995)
 val TreeBoundingBoxColor = Color(0xFFE7F0FF)
 val PlanTripImageBoxBgColor = Color(0xFFEDF7F9)
+val BlackTextColor = Color(0xFF000000)
+val TripDetailDateBgColor = Color(0xFFF7F9FC)
+val ActivityMakerCardBgColor = Color(0xFF000031)
+val HotelMakerCardBgColor = Color(0xFFE7F0FF)
+val FlightMakerCardBgColor = Color(0xFF0D6EFD)
+
+val TripItinerariesPlaceHolderCardModelBgColor = Color(0xFFF0F2F5)
+val ItImgBgCol = Color(0xFFE7F0FF)
+val HotelCardBgColor = Color(0xFF344054)
+val ActivityCardBgColor = Color(0xFF0054E4)
+
+
+
+
+
 
 
 

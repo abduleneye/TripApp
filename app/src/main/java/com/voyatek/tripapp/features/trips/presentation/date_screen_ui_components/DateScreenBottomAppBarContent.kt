@@ -1,4 +1,4 @@
-package com.voyatek.tripapp.features.plan_trip.presentation.date_screen_ui_components
+package com.voyatek.tripapp.features.trips.presentation.date_screen_ui_components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

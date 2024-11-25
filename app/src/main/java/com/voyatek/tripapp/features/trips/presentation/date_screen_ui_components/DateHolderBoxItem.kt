@@ -1,4 +1,4 @@
-package com.voyatek.tripapp.features.plan_trip.presentation.date_screen_ui_components
+package com.voyatek.tripapp.features.trips.presentation.date_screen_ui_components
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
@@ -20,7 +19,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.voyatek.tripapp.ui.theme.DialogLikeContentBoxBorderColor
-import com.voyatek.tripapp.ui.theme.TextDialogContentColor
 import com.voyatek.tripapp.ui.theme.YourTripHeaderTextColor
 
 @Composable

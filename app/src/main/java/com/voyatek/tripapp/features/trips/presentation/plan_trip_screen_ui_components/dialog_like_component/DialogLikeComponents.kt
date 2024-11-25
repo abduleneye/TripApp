@@ -1,4 +1,4 @@
-package com.voyatek.tripapp.features.plan_trip.presentation.plan_trip_screen_ui_components.dialog_like_component
+package com.voyatek.tripapp.features.trips.presentation.plan_trip_screen_ui_components.dialog_like_component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
