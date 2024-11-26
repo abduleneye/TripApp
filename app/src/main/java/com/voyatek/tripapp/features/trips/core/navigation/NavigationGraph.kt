@@ -1,6 +1,5 @@
 package com.blue_tooth_app.bluetooth_app.features.core.navigation
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -15,7 +14,7 @@ import com.voyatek.tripapp.features.trips.presentation.date_screen_ui_components
 import com.voyatek.tripapp.features.trips.presentation.plan_trip_screen_ui_components.PlanTripScreen
 import com.voyatek.tripapp.features.trips.presentation.plan_trip_screen_ui_components.PlanTripViewModel
 import com.voyatek.tripapp.features.trips.presentation.plan_trip_view_trip_screen_ui_components.PlanTripViewTripScreen
-import com.voyatek.tripapp.features.trips.presentation.where_screen_ui_components.WhereLocationScreen
+import com.voyatek.tripapp.features.trips.presentation.where_location_screen_ui_components.WhereLocationScreen
 
 
 @Composable
