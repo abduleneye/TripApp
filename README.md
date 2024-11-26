@@ -8,7 +8,10 @@ A beautiful and user-friendly native Android app built with **Kotlin** and **Jet
 - **View Trips**: A list of created trips is displayed, showcasing the trip name, dates, and description.
 - **Modern UI**: Built using Jetpack Compose for a declarative UI, offering a smooth and responsive experience.
 - **Clean Architecture**: Organized in a clear structure using modern Android development practices.
-- **Design Pattern**: Used the MVI design pattern
+- **Design Pattern**: Used the MVI design pattern.
+- **Dependency Injection**: Used dependency injection using daggerhilt.
+- **API Request**: Used retrofit for making API Request to create, retrieve and view trips.
+- **Navigation**: Used Compose Navigation for navigation and passing data btween trip screens
 
 ## **Installation Guide**
 
