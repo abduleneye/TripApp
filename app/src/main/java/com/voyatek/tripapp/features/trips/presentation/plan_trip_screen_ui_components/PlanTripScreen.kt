@@ -437,7 +437,7 @@ fun PlanTripScreen(
                 }
 
 
-                //You Trip Header Box and Content
+                //Your Trip Header Box and Content
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -542,10 +542,72 @@ fun PlanTripScreen(
 
                 }
 
+                //Loaded success planned trips options
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            horizontal = 16.dp,
+                            vertical = 12.dp
+                        )
+
+                ){
+                    UiEventClass.reloadTrips
+
+                    if (uiState.tripIsLoading && uiState.tripLoadingStatus == "LOADING"){
+
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ){
+                            CircularProgressIndicator()
+
+                        }
+
+
+                    }
+                    else if(uiState.tripLoadingStatus == "FAILED"){
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ){
+
+                            Text(
+                                text = "FAILED TO LOAD TRIPS"
+                            )
+                            Button(
+                                onClick = {
+
+                                    uiEvent(UiEventClass.reloadTrips)
+
+                                }
+                            ) {
+                                Text(
+                                    text =  "RETRY"
+                                )
+                            }
+
+                        }
+
+                    }
+
+
+
+
+
+
+
+                }
+
 
             }
 
 
+                //Drop down planned trips card and determination status
                 itemsIndexed(
                     items = uiState.plannedTrips,
                     key = { id, listItem ->
@@ -554,103 +616,54 @@ fun PlanTripScreen(
                 ) { index, item ->
 
                     //Planned Trip Cards List Section
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(
-                                horizontal = 16.dp,
-                                vertical = 12.dp
-                            )
-
-                    ){
-                        UiEventClass.reloadTrips
-
-                        if (uiState.tripIsLoading && uiState.tripLoadingStatus == "LOADING"){
-
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxWidth(),
-                                verticalArrangement = Arrangement.Center,
-                                horizontalAlignment = Alignment.CenterHorizontally
-                            ){
-                                CircularProgressIndicator()
-
-                            }
-
-
-                        } else if(uiState.tripIsLoading == false && uiState.plannedTrips.isNotEmpty()){
-
-
-                            PlannedTripCard(
-                                tripImage = painterResource(id = R.drawable.trip_card_image),
-                                tripFloatingLocation = item.tripLocationCity,
-                                tripNameDesc = item.tripName,
-                                tripDate = item.tripStartDate,
-                                tripDays = "5 Days",
-                                onViewButtonClicked = {
-                                    if(uiState.plannedTrips.isEmpty()){
-                                        Toast.makeText(
-                                            context,
-                                            "Can't navigate empty trip list",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    }
-                                    else{
-                                        navController.navigate(
-                                            route = ScreenRoutes.PlanTripViewTripScreen.withArgs(
-                                                item.tripName,
-                                                item.tripStartDate,
-                                                item.tripEndDate,
-                                                item.tripLocationCity,
-                                                item.tripTravelStyle
-                                            )
-                                        )
-
-
-                                    }                               }
-                            )
-                            Spacer(modifier = Modifier
-                                .height(10.dp))
-
-
-
-
-
-                        }
-                        else if(uiState.tripLoadingStatus == "FAILED"){
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxWidth(),
-                                verticalArrangement = Arrangement.Center,
-                                horizontalAlignment = Alignment.CenterHorizontally
-                            ){
-
-                                Text(
-                                    text = "FAILED TO LOAD TRIPS"
-                                )
-                                Button(
-                                    onClick = {
-
-                                        uiEvent(UiEventClass.reloadTrips)
-
-                                    }
-                                ) {
-                                    Text(
-                                        text =  "RETRY"
-                                    )
+                    if(uiState.tripIsLoading == false && uiState.plannedTrips.isNotEmpty()){
+                        PlannedTripCard(
+                            tripImage = painterResource(id = R.drawable.trip_card_image),
+                            tripFloatingLocation = item.tripLocationCity,
+                            tripNameDesc = item.tripName,
+                            tripDate = item.tripStartDate,
+                            tripDays = "5 Days",
+                            onViewButtonClicked = {
+                                if(uiState.plannedTrips.isEmpty()){
+                                    Toast.makeText(
+                                        context,
+                                        "Can't navigate empty trip list",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
+                                else{
+                                    navController.navigate(
+                                        route = ScreenRoutes.PlanTripViewTripScreen.withArgs(
+                                            item.tripName,
+                                            item.tripStartDate,
+                                            item.tripEndDate,
+                                            item.tripLocationCity,
+                                            item.tripTravelStyle
+                                        )
+                                    )
 
-                            }
 
-                        }
-
-
-
-
-
+                                }                               }
+                        )
 
 
                     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                }
+
+
 
 
 
@@ -665,7 +678,7 @@ fun PlanTripScreen(
 
         }
     }
-}
+
 
 @Preview(
     showSystemUi = true,
