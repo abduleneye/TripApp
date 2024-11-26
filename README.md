@@ -59,11 +59,9 @@ The app uses Retrofit for network operations.
 
 Base URL: https://trips.free.beeceptor.com/
 
-GET Request:
-Get Trip: https://trips.free.beeceptor.com/get_trips
+Get Trip End point: get_trips
 
-POST Request:
-Create Trip: https://trips.free.beeceptor.com/create_trip
+Create Trip End point: create_trip
 
 
 
