@@ -26,7 +26,7 @@ Before installing the app, ensure you have the following installed:
 ### **Steps to Install**
 
 1. **Clone the Repository**  
-   Clone the project from GitHub:
+   Clone the project from GitHub: https://github.com/abduleneye/VoyaTekTripAssessmentApp.git
 
 3. **Open the Project in Android Studio**
 Launch Android Studio
@@ -58,6 +58,7 @@ The app requires Internet permissions to connect to APIs. Ensure the necessary p
 The app uses Retrofit for network operations.
 
 Base URL: https://trips.free.beeceptor.com/
+
 GET Request:
 Get Trip: https://trips.free.beeceptor.com/get_trips
 
