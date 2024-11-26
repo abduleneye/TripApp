@@ -4,7 +4,7 @@ import com.voyatek.tripapp.features.trips.core.utils.Resource
 import com.voyatek.tripapp.features.trips.data.remote.TripApi
 import com.voyatek.tripapp.features.trips.domain.model.CreateTripBodyModel
 import com.voyatek.tripapp.features.trips.domain.model.CreateTripResponseModel
-import com.voyatek.tripapp.features.trips.domain.model.TripModel
+import com.voyatek.tripapp.features.trips.domain.model.GetTripModel
 import com.voyatek.tripapp.features.trips.domain.repo.TripApiRepo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -43,7 +43,8 @@ class TripApiRepoApiImplementation(
         }
     }
 
-    override fun viewTrip(): Flow<Resource<TripModel>>  = flow {
+    override fun viewTrip(): Flow<Resource<List<GetTripModel>>>  = flow {
+
         emit(
             Resource.Loading(
 
@@ -78,7 +79,7 @@ class TripApiRepoApiImplementation(
         }
     }
 
-//    override fun viewTrip(): Flow<Resource<TripModel>> {
+//    override fun viewTrip(): Flow<Resource<GetTripModel>> {
 //        TODO("Not yet implemented")
 //    }
 }

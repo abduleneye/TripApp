@@ -33,7 +33,7 @@ import com.voyatek.tripapp.ui.theme.YourTripHeaderTextColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WhereScreen(
+fun WhereLocationScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
     UiEvent: (UiEventClass) -> Unit
@@ -243,5 +243,5 @@ fun WhereScreen(
     )
 @Composable
 fun WhereScreenPreview(){
-   // WhereScreen()
+   // WhereLocationScreen()
 }

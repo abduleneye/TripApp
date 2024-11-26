@@ -20,58 +20,53 @@ import javax.inject.Inject
 class PlanTripViewModel @Inject constructor(
     private val tripApiRepo: TripApiRepo
 ): ViewModel() {
-    init {
-        //getTrips()
-    }
+
 
     private var _tripScreenUiState = MutableStateFlow(PlanTripUiState())
     var tripScreenUiState = _tripScreenUiState.asStateFlow()
 
+    init {
+        getTrips()
+    }
+
     private fun getTrips() {
         viewModelScope.launch {
             tripApiRepo.viewTrip().onEach { result ->
-                when(result){
+                when (result) {
                     is Resource.Error -> {
-                        Log.d(
-                            "Trips",
-                            "${result.message}"
-                        )
-
-                    }
-                    is Resource.Loading -> {
-                        Log.d(
-                            "Trips",
-                            "Trips Loading..."
-                        )
-                        Log.d(
-                            "Trips",
-                            "${result.message}"
-                        )
-
-                    }
-                    is Resource.Success -> {
+                        Log.e("Trips", "Error occurred")
                         _tripScreenUiState.update {
                             it.copy(
-                                tripName = result.data!!.tripName,
-                                tripDescription = result.data.tripDescription,
-                                tripTravelStyle = result.data.travelStyle
+                                tripIsLoading = false,
+                                tripLoadingStatus = "FAILED"
                             )
-
-
                         }
-
-                        Log.d(
-                            "Trips",
-                            "${result.data}"
-                        )
-
+                    }
+                    is Resource.Loading -> {
+                        Log.d("Trips", "Trips Loading...")
+                        _tripScreenUiState.update {
+                            it.copy(
+                                tripIsLoading = true,
+                                tripLoadingStatus = "LOADING"
+                            )
+                        }
+                    }
+                    is Resource.Success -> {
+                        if (result.data != null) {
+                            _tripScreenUiState.update {
+                                it.copy(
+                                    plannedTrips = result.data,
+                                    tripIsLoading = false,
+                                    tripLoadingStatus = "SUCCESS"
+                                )
+                            }
+                        }
                     }
                 }
-
-
             }.launchIn(this)
         }
     }
+
 
     private fun createTrips(){
         viewModelScope.launch {
@@ -131,7 +126,7 @@ class PlanTripViewModel @Inject constructor(
         }
     }
 
-    fun resetUiState(){
+    private fun resetUiState(){
         _tripScreenUiState.update {
             it.copy(
                 tripLocationCity ="",
@@ -274,6 +269,10 @@ class PlanTripViewModel @Inject constructor(
                     )
                 }
 
+            }
+
+            UiEventClass.reloadTrips -> {
+                getTrips()
             }
         }
     }

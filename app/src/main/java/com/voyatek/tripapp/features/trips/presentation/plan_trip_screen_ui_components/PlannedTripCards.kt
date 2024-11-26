@@ -3,6 +3,7 @@ package com.voyatek.tripapp.features.trips.presentation.plan_trip_screen_ui_comp
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,7 +41,8 @@ fun PlannedTripCard(
     tripFloatingLocation: String,
     tripNameDesc: String,
     tripDate: String,
-    tripDays: String
+    tripDays: String,
+    onViewButtonClicked: ()->Unit
 
 ){
     Box (
@@ -230,7 +232,9 @@ fun PlannedTripCard(
 //                        bottom = 8.dp
                     )
                     .clip(RoundedCornerShape(4.dp))
-                    //.border(width = )
+                    .clickable {
+                        onViewButtonClicked.invoke()
+                    }
                     .background(CreateTripButtonBackgroundColor),
                 contentAlignment = Alignment.Center
             ){
@@ -270,5 +274,6 @@ fun PlannedTripCardPreview(){
         tripNameDesc = "Bahamas Family Trip",
         tripDate = "19th April 2024",
         tripDays = "5 Days",
+        onViewButtonClicked = {}
     )
 }

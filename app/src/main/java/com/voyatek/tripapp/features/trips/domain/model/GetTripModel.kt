@@ -1,9 +1,12 @@
 package com.voyatek.tripapp.features.trips.domain.model
 
-data class TripModel (
+data class GetTripModel (
+    val tripLocationCity: String,
+    val tripStartDate: String,
+    val tripEndDate: String,
     val tripName: String,
-    val travelStyle: String,
-    val tripDescription: String
+    val tripTravelStyle: String,
+    val tripDescription: String,
     )
 //
 //[{

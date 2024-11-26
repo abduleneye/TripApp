@@ -1,4 +1,4 @@
-package com.voyatek.tripapp.features.trips.presentation.second_plan_trip_screen_ui_components
+package com.voyatek.tripapp.features.trips.presentation.plan_trip_view_trip_screen_ui_components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

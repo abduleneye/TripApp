@@ -1,4 +1,4 @@
-package com.voyatek.tripapp.features.trips.presentation.second_plan_trip_screen_ui_components
+package com.voyatek.tripapp.features.trips.presentation.plan_trip_view_trip_screen_ui_components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -36,6 +36,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.voyatek.tripapp.R
 import com.voyatek.tripapp.ui.theme.ActivityCardBgColor
 import com.voyatek.tripapp.ui.theme.ActivityMakerCardBgColor
@@ -51,8 +52,14 @@ import com.voyatek.tripapp.ui.theme.YourTripSubTextColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SecondPlanTripScreen(
-    modifier: Modifier = Modifier
+fun PlanTripViewTripScreen(
+    modifier: Modifier = Modifier,
+    navController: NavController,
+    tripName: String?,
+    startDate: String?,
+    endDate: String?,
+    tripLocation: String?,
+    travelStyle: String?
 ){
     Scaffold (
         topBar = {
@@ -68,7 +75,7 @@ fun SecondPlanTripScreen(
                 navigationIcon = {
                     IconButton(onClick = {
                         //navController.navigate(Screen.Home.route)
-                        //navController.popBackStack()
+                        navController.popBackStack()
                     }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -139,44 +146,46 @@ fun SecondPlanTripScreen(
                                contentDescription = ""
                            )
 
-                           Text(
-                               text = "21 March 2024",
-                               modifier = Modifier
-                                   // .height(26.dp)
-                                   // .width(253.dp)
-                                   .padding(
-                                       horizontal = 8.dp,
-                                       //vertical = 57.dp
-                                   )
-                               ,
-                               color = YourTripHeaderTextColor,
-                               fontSize = 12.sp,
-                               fontWeight = FontWeight.W500,
-                               lineHeight = 20.sp,
-                               letterSpacing = (-0.5).sp
-                           )
+                           if (startDate != null) {
+                               Text(
+                                   text = startDate,
+                                   modifier = Modifier
+                                       // .height(26.dp)
+                                       // .width(253.dp)
+                                       .padding(
+                                           horizontal = 8.dp,
+                                           //vertical = 57.dp
+                                       ),
+                                   color = YourTripHeaderTextColor,
+                                   fontSize = 12.sp,
+                                   fontWeight = FontWeight.W500,
+                                   lineHeight = 20.sp,
+                                   letterSpacing = (-0.5).sp
+                               )
+                           }
 
                            Icon(
                                painter = painterResource(id = R.drawable.arrow_right),
                                contentDescription = ""
                            )
 
-                           Text(
-                               text = "21 April 2024",
-                               modifier = Modifier
-                                   // .height(26.dp)
-                                   // .width(253.dp)
-                                   .padding(
-                                       horizontal = 8.dp,
-                                       //vertical = 57.dp
-                                   )
-                               ,
-                               color = YourTripHeaderTextColor,
-                               fontSize = 12.sp,
-                               fontWeight = FontWeight.W500,
-                               lineHeight = 20.sp,
-                               letterSpacing = (-0.5).sp
-                           )
+                           if (endDate != null) {
+                               Text(
+                                   text = endDate,
+                                   modifier = Modifier
+                                       // .height(26.dp)
+                                       // .width(253.dp)
+                                       .padding(
+                                           horizontal = 8.dp,
+                                           //vertical = 57.dp
+                                       ),
+                                   color = YourTripHeaderTextColor,
+                                   fontSize = 12.sp,
+                                   fontWeight = FontWeight.W500,
+                                   lineHeight = 20.sp,
+                                   letterSpacing = (-0.5).sp
+                               )
+                           }
 
 
 
@@ -188,14 +197,16 @@ fun SecondPlanTripScreen(
                    )
 
                    //Trip Desc or name
-                   Text(
-                       text = "Bahamas Family Trip",
-                       color = BlackTextColor,
-                       fontSize = 16.sp,
-                       fontWeight = FontWeight.W700,
-                       lineHeight = 24.sp,
-                       letterSpacing = (-0.5).sp
-                   )
+                   if (tripName != null) {
+                       Text(
+                           text = tripName,
+                           color = BlackTextColor,
+                           fontSize = 16.sp,
+                           fontWeight = FontWeight.W700,
+                           lineHeight = 24.sp,
+                           letterSpacing = (-0.5).sp
+                       )
+                   }
 
                    Spacer(modifier =
                    Modifier.height(4.dp)
@@ -203,7 +214,7 @@ fun SecondPlanTripScreen(
 
                    //Trip Destination and style or type
                    Text(
-                       text = "${"New York, United states of America"} | ${"Solo Type"}",
+                       text = "${tripLocation} | ${travelStyle}",
                        color = YourTripSubTextColor,
                        fontSize = 12.sp,
                        fontWeight = FontWeight.W500,
@@ -470,5 +481,5 @@ fun SecondPlanTripScreen(
 )
 @Composable
 fun SecondPlanTripScreenPreview(){
-    SecondPlanTripScreen()
+    //PlanTripViewTripScreen()
 }

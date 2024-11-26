@@ -2,17 +2,16 @@ package com.voyatek.tripapp.features.trips.data.remote
 
 import com.voyatek.tripapp.features.trips.domain.model.CreateTripBodyModel
 import com.voyatek.tripapp.features.trips.domain.model.CreateTripResponseModel
-import com.voyatek.tripapp.features.trips.domain.model.TripModel
+import com.voyatek.tripapp.features.trips.domain.model.GetTripModel
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.Query
 
 
 interface TripApi {
     @GET("/get_trips")
-    suspend fun getTrips(): Response<TripModel>
+    suspend fun getTrips(): Response<List<GetTripModel>>
 
     @POST("/create_trip")
     suspend fun postTrip(@Body trip: CreateTripBodyModel): Response<CreateTripResponseModel>

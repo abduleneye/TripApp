@@ -32,6 +32,8 @@ sealed class UiEventClass {
 
     object onErrorCloseLoadingDialogBox: UiEventClass()
 
+    object reloadTrips: UiEventClass()
+
 
 
 

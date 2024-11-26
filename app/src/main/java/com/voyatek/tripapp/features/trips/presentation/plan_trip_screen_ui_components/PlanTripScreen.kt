@@ -19,10 +19,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -46,6 +49,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.blue_tooth_app.bluetooth_app.features.core.navigation.ScreenRoutes
 import com.voyatek.tripapp.R
+import com.voyatek.tripapp.features.trips.domain.model.GetTripModel
 import com.voyatek.tripapp.features.trips.presentation.plan_trip_screen_ui_components.dialog_like_component.DialogLikeComponents
 import com.voyatek.tripapp.ui.theme.CreateTripButtonBackgroundColor
 import com.voyatek.tripapp.ui.theme.CreateTripButtonColor
@@ -319,7 +323,7 @@ fun PlanTripScreen(
                                     headerText = "Where to?",
                                     subText = if(uiState.tripLocationCity.isEmpty()) "Select City" else uiState.tripLocationCity,
                                     navigationAction = {
-                                        navController.navigate(route = ScreenRoutes.WhereScreen.routes)
+                                        navController.navigate(route = ScreenRoutes.WhereLocationScreen.routes)
                                     }
                                     // modifier = Modifier.weight(1f)
 
@@ -538,53 +542,122 @@ fun PlanTripScreen(
 
                 }
 
-                //Planned Trip Cards List Section
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        //.height(1572.dp)
-                        //.width(358.dp)
-                        .padding(
-                            horizontal = 16.dp,
-                            vertical = 12.dp
-                        )
 
-                ){
+            }
 
-                        PlannedTripCard(
-                            tripImage = painterResource(id = R.drawable.trip_card_image),
-                            tripFloatingLocation = "Paris",
-                            tripNameDesc = "Bahamas Family Trip",
-                            tripDate = "19th April 2024",
-                            tripDays = "5 Days",
-                        )
-                        Spacer(modifier = Modifier
-                            .height(10.dp))
 
-                        PlannedTripCard(
-                            tripImage = painterResource(id = R.drawable.trip_card_image),
-                            tripFloatingLocation = "Paris",
-                            tripNameDesc = "Bahamas Family Trip",
-                            tripDate = "19th April 2024",
-                            tripDays = "5 Days",
-                        )
+                itemsIndexed(
+                    items = uiState.plannedTrips,
+                    key = { id, listItem ->
+                        listItem.hashCode()
+                    }
+                ) { index, item ->
 
-                    Spacer(modifier = Modifier
-                        .height(10.dp))
+                    //Planned Trip Cards List Section
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(
+                                horizontal = 16.dp,
+                                vertical = 12.dp
+                            )
 
-                        PlannedTripCard(
-                            tripImage = painterResource(id = R.drawable.trip_card_image),
-                            tripFloatingLocation = "Paris",
-                            tripNameDesc = "Bahamas Family Trip",
-                            tripDate = "19th April 2024",
-                            tripDays = "5 Days",
-                        )
+                    ){
+                        UiEventClass.reloadTrips
 
+                        if (uiState.tripIsLoading && uiState.tripLoadingStatus == "LOADING"){
+
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth(),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ){
+                                CircularProgressIndicator()
+
+                            }
+
+
+                        } else if(uiState.tripIsLoading == false && uiState.plannedTrips.isNotEmpty()){
+
+
+                            PlannedTripCard(
+                                tripImage = painterResource(id = R.drawable.trip_card_image),
+                                tripFloatingLocation = item.tripLocationCity,
+                                tripNameDesc = item.tripName,
+                                tripDate = item.tripStartDate,
+                                tripDays = "5 Days",
+                                onViewButtonClicked = {
+                                    if(uiState.plannedTrips.isEmpty()){
+                                        Toast.makeText(
+                                            context,
+                                            "Can't navigate empty trip list",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                    else{
+                                        navController.navigate(
+                                            route = ScreenRoutes.PlanTripViewTripScreen.withArgs(
+                                                item.tripName,
+                                                item.tripStartDate,
+                                                item.tripEndDate,
+                                                item.tripLocationCity,
+                                                item.tripTravelStyle
+                                            )
+                                        )
+
+
+                                    }                               }
+                            )
+                            Spacer(modifier = Modifier
+                                .height(10.dp))
+
+
+
+
+
+                        }
+                        else if(uiState.tripLoadingStatus == "FAILED"){
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth(),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ){
+
+                                Text(
+                                    text = "FAILED TO LOAD TRIPS"
+                                )
+                                Button(
+                                    onClick = {
+
+                                        uiEvent(UiEventClass.reloadTrips)
+
+                                    }
+                                ) {
+                                    Text(
+                                        text =  "RETRY"
+                                    )
+                                }
+
+                            }
+
+                        }
+
+
+
+
+
+
+
+                    }
 
 
 
                 }
-            }
+
+
+
 
 
 
