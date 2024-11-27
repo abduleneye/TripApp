@@ -6,7 +6,7 @@ A beautiful and user-friendly native Android app built with **Kotlin** and **Jet
 
 - **Create Trips**: Users can add trip details, including trip name, start and end dates, description, and travel style.
 - **View Trips**: A list of created trips is displayed, showcasing the trip name, dates, and description.
-- **Modern UI**: Built using Jetpack Compose for a declarative UI, offering a smooth and responsive experience.
+- **Modern UI**: Built using Jetpack Compose for a declarative UI.
 - **Clean Architecture**: Organized in a clear structure using modern Android development practices.
 - **Design Pattern**: Used the MVI design pattern.
 - **Dependency Injection**: Used dependency injection using daggerhilt.
