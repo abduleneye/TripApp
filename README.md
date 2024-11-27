@@ -19,7 +19,7 @@ A beautiful and user-friendly native Android app built with **Kotlin** and **Jet
 
 Before installing the app, ensure you have the following installed:
 
-- **Android Studio** (version 4.0 or higher)
+- **Android Studio** (version 7.0 or higher)
 - **Kotlin** (latest stable version)
 - **Android SDK** (latest stable version)
 
