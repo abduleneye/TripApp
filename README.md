@@ -74,11 +74,11 @@ Create Trip End point: create_trip
       <br>Screenshot 2
     </td>
      <td align="center">
-      <img src="AppPictures/create_trip_loading.jpg" alt="Screenshot 3" width="200">
+      <img src="AppPictures/trip_details.jpg" alt="Screenshot 3" width="200">
       <br>Screenshot 3
     </td>
     <td align="center">
-      <img src="AppPictures/trip_succ.jpg" alt="Screenshot 4" width="200">
+      <img src="AppPictures/create_trip.jpg" alt="Screenshot 4" width="200">
       <br>Screenshot 4
     </td>
       <td align="center">
