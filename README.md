@@ -63,6 +63,9 @@ Get Trip End point: get_trips
 
 Create Trip End point: create_trip
 
+[Click me to Download the App](https://github.com/abduleneye/TripApp/releases/download/v1.0.0/voyatek-mock-app-release.apk)
+
+
 <table>
   <tr>
     <td align="center">
