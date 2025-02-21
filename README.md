@@ -63,6 +63,46 @@ Get Trip End point: get_trips
 
 Create Trip End point: create_trip
 
+<table>
+  <tr>
+    <td align="center">
+      <img src="AppPictures/voytek_home.jpg" alt="Screenshot 1" width="200">
+      <br>Screenshot 1
+    </td>
+    <td align="center">
+      <img src="AppPictures/create_trip_diag.jpg" alt="Screenshot 2" width="200">
+      <br>Screenshot 2
+    </td>
+     <td align="center">
+      <img src="AppPictures/create_trip_loading.jpg" alt="Screenshot 3" width="200">
+      <br>Screenshot 3
+    </td>
+    <td align="center">
+      <img src="AppPictures/trip_succ.jpg" alt="Screenshot 4" width="200">
+      <br>Screenshot 4
+    </td>
+      <td align="center">
+      <img src="AppPictures/trip_activities.jpg" alt="Screenshot 6" width="200">
+      <br>Screenshot 6
+    </td>
+     <td align="center">
+      <img src="AppPictures/trip_activites2.jpg" alt="Screenshot 5" width="200">
+      <br>Screenshot 5
+    </td>
+      </td>
+     <td align="center">
+      <img src="AppViews/Screenshot_2025-02-21-19-39-44-59_0215209bb0df09a8a1eddc6702fb767c.jpg" alt="Screenshot 5" width="200">
+      <br>Screenshot 7
+    </td>
+    <td align="center">
+      <img src="AppViews/Screenshot_2025-02-21-19-40-10-92_0215209bb0df09a8a1eddc6702fb767c.jpg" alt="Screenshot 6" width="200">
+      <br>Screenshot 8
+    </td>
+    </td>
+      </td>
+  </tr>
+</table>
+
 
 
 
