@@ -91,11 +91,11 @@ Create Trip End point: create_trip
     </td>
       </td>
      <td align="center">
-      <img src="AppViews/Screenshot_2025-02-21-19-39-44-59_0215209bb0df09a8a1eddc6702fb767c.jpg" alt="Screenshot 5" width="200">
+      <img src="AppPictures/trip_details.jpg" alt="Screenshot 5" width="200">
       <br>Screenshot 7
     </td>
     <td align="center">
-      <img src="AppViews/Screenshot_2025-02-21-19-40-10-92_0215209bb0df09a8a1eddc6702fb767c.jpg" alt="Screenshot 6" width="200">
+      <img src="AppPictures/cities.jpg" alt="Screenshot 6" width="200">
       <br>Screenshot 8
     </td>
     </td>
