@@ -83,7 +83,7 @@ Create Trip End point: create_trip
     </td>
      <td align="center">
       <img src="AppPictures/create_trip_loading.jpg" alt="Screenshot 4" width="200">
-      <br>Screenshot 4
+      <br>Screenshot 5
     </td>
       <td align="center">
       <img src="AppPictures/trip_succ.jpg" alt="Screenshot 6" width="200">
@@ -91,11 +91,15 @@ Create Trip End point: create_trip
     </td>
       <td align="center">
       <img src="AppPictures/saved_cities.jpg" alt="Screenshot 5" width="200">
-      <br>Screenshot 5
+      <br>Screenshot 7
+    </td>
+      <td align="center">
+      <img src="AppPictures/trip_activities.jpg" alt="Screenshot 5" width="200">
+      <br>Screenshot 8
     </td>
      <td align="center">
       <img src="AppPictures/trip_activites2.jpg" alt="Screenshot 5" width="200">
-      <br>Screenshot 5
+      <br>Screenshot 9
     </td>
       </td>
   </tr>
